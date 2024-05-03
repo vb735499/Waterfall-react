@@ -9,12 +9,12 @@ const loadable = (Component: LazyExoticComponent<FC>) => (props: any) => (
     </Suspense>
 );
 
-const Waterfall = loadable(lazy(() => import("./pages/waterfall")));
+const Blog = loadable(lazy(() => import("./pages/Blog")));
   
 const BrowserRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Waterfall />,
+      element: <Blog />,
     },
 ]);
 
