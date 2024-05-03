@@ -1,5 +1,5 @@
 import { FC, lazy, LazyExoticComponent, Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import LoadingScreen from "./components/LoadingScreen";
 
