@@ -26,7 +26,7 @@ jobs:
         run: yarn install
       - name: ci, build and test via YARN
         run: |
-          yarn ci
+          yarn install --frozen-lockfile
           yarn build
           yarn test
 
