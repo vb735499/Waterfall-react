@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Setup react environments
         run: yarn install
-      - name: npm ci, build and test
+      - name: ci, build and test via YARN
         run: |
           yarn ci
           yarn build
