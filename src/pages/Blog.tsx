@@ -34,7 +34,21 @@ export default function Blog() {
       setIsLoaded(true);
     }
   }, [imgsFile, isLoaded]);
-
+  if (imgsFile === undefined || imgsFile === null) {
+    return (
+      <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Header title="PicShare" />
+        <main>
+        </main>
+      </Container>
+      <Footer
+        description="Sorry, this website maybe not working correctly, please contact the website manager Email: kevintee825@gmail.com"
+      />
+    </ThemeProvider>
+    );
+  }
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />

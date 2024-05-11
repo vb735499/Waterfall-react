@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import {act} from 'react';
+import {render, screen} from '@testing-library/react';
+import Blog from './pages/Blog';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText("Blog");
+test('renders Blog', () => {
+  render(<Blog />);
+  const linkElement = screen.getByText("UploadFile");
   expect(linkElement).toBeInTheDocument();
 });
