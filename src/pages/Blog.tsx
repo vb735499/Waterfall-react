@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header';
-import FeaturedPost from './FeaturedPost';
 import Footer from './Footer';
 import APIService from '../api/apiservice';
 import { ImageList } from '@mui/material';
