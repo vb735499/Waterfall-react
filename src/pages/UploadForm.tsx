@@ -25,11 +25,11 @@ export default function UploadForm() {
         width: 1,
     });
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('Form submitted:', formData);
+    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     console.log('Form submitted:', formData);
 
-    };
+    // };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -50,7 +50,7 @@ export default function UploadForm() {
                 action="/api/upload" 
                 method="POST" 
                 encType="multipart/form-data" 
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
             >
                 <Grid xs={8}> 
                     <Button
