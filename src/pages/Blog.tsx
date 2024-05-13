@@ -7,6 +7,8 @@ import Header from './Header';
 import FeaturedPost from './FeaturedPost';
 import Footer from './Footer';
 import APIService from '../api/apiservice';
+import { ImageList } from '@mui/material';
+import ImagePost from './ImagePost';
 
 interface jsonData {
   id: string
@@ -55,12 +57,11 @@ export default function Blog() {
       <Container maxWidth="lg">
         <Header title="PicShare" />
         <main>
-          <Grid container spacing={4}>
+          <ImageList sx={{ width: 500, height: 450 }}>
             {imgsFile.map((post) => (
-              <FeaturedPost key={post.id} post={post} />
+              <ImagePost post={post} />
             ))}
-          </Grid>
-          
+          </ImageList>
           <Grid container spacing={5} sx={{ mt: 3 }}>
           </Grid>
         </main>
