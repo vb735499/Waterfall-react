@@ -26,7 +26,7 @@ export default function FeaturedPost(props: FeaturedPostProps) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleDownload = () => {
     setAnchorEl(null);
     fetch(post.image, { method: 'GET'})
     .then((response) => {
@@ -70,9 +70,9 @@ export default function FeaturedPost(props: FeaturedPostProps) {
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={handleDownload}
               >
-                <MenuItem onClick={handleClose} >Download</MenuItem>
+                <MenuItem onClick={handleDownload} >Download</MenuItem>
               </Menu>
             </div>
           }
