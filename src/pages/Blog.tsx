@@ -56,12 +56,12 @@ export default function Blog() {
       <Container maxWidth="lg">
         <Header title="PicShare" />
         <main>
-          <ImageList sx={{ width: 500, height: 450 }}>
-            {imgsFile.map((post) => (
-              <ImagePost post={post} />
-            ))}
-          </ImageList>
-          <Grid container spacing={5} sx={{ mt: 3 }}>
+          <Grid container spacing={1} sx={{ mt: 3 }}>
+            <ImageList sx={{ width: 500, height: 450 }}>
+              {imgsFile.map((post) => (
+                <ImagePost post={post} />
+              ))}
+            </ImageList>
           </Grid>
         </main>
       </Container>
