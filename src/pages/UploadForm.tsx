@@ -6,6 +6,9 @@ import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
+import APIService from '../api/apiservice';
+import { Toaster } from 'react-hot-toast';
+// import { formatDiagnostic } from 'typescript';
 
 export default function UploadForm() {
     const [formData, setFormData] = React.useState({
@@ -25,11 +28,11 @@ export default function UploadForm() {
         width: 1,
     });
 
-    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    //     console.log('Form submitted:', formData);
-
-    // };
+    const handleSubmit = async () => {
+        console.log('Form submitted:', formData);
+        if(formData.upload && formData.username !== '')
+            await APIService._upload(formData.username, formData.upload);
+    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -37,7 +40,7 @@ export default function UploadForm() {
     };
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files == null){
+        if (event.target.files === null){
             return ;
         }
         const file = event.target.files ;
@@ -46,12 +49,7 @@ export default function UploadForm() {
     
   return (
         <Grid container spacing={2}>
-            <form 
-                action="/api/upload" 
-                method="POST" 
-                encType="multipart/form-data" 
-                // onSubmit={handleSubmit}
-            >
+                <Toaster position="top-right" reverseOrder={false}/>
                 <Grid xs={8}> 
                     <Button
                         component="label"
@@ -60,7 +58,7 @@ export default function UploadForm() {
                         startIcon={<CloudUploadIcon />}
                     >
                         請選擇上傳的檔案(可拖拉檔案至此，支援jpg,jpeg,png,gif格式):
-                        <VisuallyHiddenInput type="file" multiple={true} name='upload[]' draggable={true} onChange={handleFileChange}/>
+                        <VisuallyHiddenInput type="file" multiple={true} name='upload[]' accept='image/*' draggable={true} onChange={handleFileChange}/>
                     </Button>
                 </Grid>
                 <Grid spacing={4}>
@@ -74,9 +72,14 @@ export default function UploadForm() {
                     />
                 </Grid>
                 <Stack spacing={2} direction="row">
-                    <Button type='submit' variant="text" endIcon={<SendIcon />}>送出</Button>
+                    <Button 
+                        variant="text" 
+                        endIcon={<SendIcon />} 
+                        onClick={handleSubmit}
+                    >
+                        送出
+                    </Button>
                 </Stack>
-            </form>
         </Grid>
   );
 }
