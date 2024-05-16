@@ -2,7 +2,6 @@ import toast from 'react-hot-toast';
 
 const _get = async () =>{
     return await fetch('/api/query')
-    .then((response) => response.clone())
     .then((response) => {
         return response.clone().json();
     })
@@ -27,6 +26,7 @@ const _upload = async (username: string, imgPaths: FileList) => {
     await fetch('/api/upload', requestPkg)
     .then((response) => {
         (response.status === 200) ? (toast.success('上傳成功!')):( toast.error("error code:"+response.status+', 上傳失敗') )
+        console.log(response.clone().json());
     })
     .catch((err) => {
         toast.error("error msg:"+err+", 上傳失敗, 請聯絡管理者!");
