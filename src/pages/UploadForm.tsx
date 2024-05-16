@@ -70,14 +70,13 @@ export default function UploadForm() {
   return (
         <Grid container spacing={2}>
                 <Toaster position="top-right" reverseOrder={false}/>
-
                 <ImageList sx={{ width: 500, height: 450, margin: 'auto' }}>
                     {preview.map((post) => (
                         <ImagePost post={post} />
                     ))}
                 </ImageList>
                 
-                <Grid xs={8}> 
+                <Grid> 
                     <Button
                         component="label"
                         variant="contained"
@@ -88,7 +87,7 @@ export default function UploadForm() {
                         <VisuallyHiddenInput type="file" multiple={true} name='upload[]' accept='image/*' draggable={true} onChange={handleFileChange}/>
                     </Button>
                 </Grid>
-                <Grid spacing={4}>
+                <Grid>
                     <TextField
                         type="text"
                         name="username"
