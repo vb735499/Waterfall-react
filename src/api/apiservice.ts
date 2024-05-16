@@ -12,21 +12,22 @@ const _get = async () =>{
     .catch(console.error);
 }
 
-const _upload = async (username: string, imgPaths: FileList) => {
+const _upload = async (username: string, imgPaths: FileList | string[]) => {
+    console.log(imgPaths);
+
     const formData = new FormData();
     formData.append("memberId", username);
-    for(var imgPath in imgPaths)
-        formData.append("upload[]",imgPath);
+    for(var key in imgPaths)
+        formData.append("upload[]", imgPaths[key]);
 
     const requestPkg = {
         method: "POST",
         body: formData
     }
-    console.log(requestPkg);
+    console.log(formData);
     await fetch('/api/upload', requestPkg)
     .then((response) => {
         (response.status === 200) ? (toast.success('上傳成功!')):( toast.error("error code:"+response.status+', 上傳失敗') )
-        console.log(response.clone().json());
     })
     .catch((err) => {
         toast.error("error msg:"+err+", 上傳失敗, 請聯絡管理者!");

@@ -8,13 +8,22 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import APIService from '../api/apiservice';
 import { Toaster } from 'react-hot-toast';
-// import { formatDiagnostic } from 'typescript';
+import { ImageList } from '@mui/material';
+import ImagePost from './ImagePost';
+
+interface imageBlob{
+    date: string;
+    title: string;
+    image: string;
+    username: string;
+}
 
 export default function UploadForm() {
     const [formData, setFormData] = React.useState({
         username: '',
-        upload: null as FileList | null, 
+        upload: null as FileList | null | string[], 
     });
+    const [preview, setPreviewData] = React.useState<imageBlob[]>([]);
     
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
@@ -29,12 +38,11 @@ export default function UploadForm() {
     });
 
     const handleSubmit = async () => {
-        console.log('Form submitted:', formData);
         if(formData.upload && formData.username !== '')
             await APIService._upload(formData.username, formData.upload);
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleUserNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -44,12 +52,31 @@ export default function UploadForm() {
             return ;
         }
         const file = event.target.files ;
+        setPreviewData([]);
+        let _files = preview;
+        for(let i = 0; i < file.length ; i++){
+            _files.push({
+                username: "Default",
+                date: new Date().toString(),
+                title: file[i].name.split(".")[0],
+                image: URL.createObjectURL(file[i]),
+            });
+            console.log(URL.createObjectURL(file[i]));
+        }
         setFormData({ ...formData, upload: file });
+        setPreviewData(_files);
     };
     
   return (
         <Grid container spacing={2}>
                 <Toaster position="top-right" reverseOrder={false}/>
+
+                <ImageList sx={{ width: 500, height: 450, margin: 'auto' }}>
+                    {preview.map((post) => (
+                        <ImagePost post={post} />
+                    ))}
+                </ImageList>
+                
                 <Grid xs={8}> 
                     <Button
                         component="label"
@@ -67,7 +94,7 @@ export default function UploadForm() {
                         name="username"
                         label="Username"
                         value={formData.username}
-                        onChange={handleChange}
+                        onChange={handleUserNameChange}
                         fullWidth
                     />
                 </Grid>

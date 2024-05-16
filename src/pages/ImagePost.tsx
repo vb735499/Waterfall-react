@@ -2,7 +2,6 @@ import * as React from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
-// import InfoIcon from '@mui/icons-material/Info';
 import DownloadIcon from '@mui/icons-material/Download';
 import moment from 'moment';
 
@@ -12,7 +11,7 @@ interface ImagePostProps {
         title: string;
         image: string;
         username: string;
-    };
+    }
 }
 
 export default function ImagePost(props: ImagePostProps) {
