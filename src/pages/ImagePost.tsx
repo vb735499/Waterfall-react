@@ -18,7 +18,12 @@ export default function ImagePost(props: ImagePostProps) {
     const { post } = props;
     const title = post.title.split('/').pop();
     const handleDownload = () => {
-        fetch(post.image, { method: 'GET'})
+        fetch(post.image, { 
+            method: 'GET',
+            headers: new Headers({
+                "Access-Control-Allow-Origin": "*",
+            })
+        })
         .then((response) => {
           return response.blob();
         })
