@@ -25,6 +25,7 @@ export default function Header(props: HeaderProps) {
         >
           {title}
         </Typography>
+        <Button size="small" href='/'>Login</Button>
         {/* <Button variant="contained" size="small">
           Sign in
         </Button>
